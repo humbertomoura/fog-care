@@ -1,0 +1,37 @@
+name: Fabric
+version: "2.0.1"
+caliper:
+    blockchain: fabric
+    sutOptions : 
+       mutualTls: true
+
+channels:
+  - channelName: fogcarechannel
+    contracts:
+    - id: gocc
+      contractID: gocc
+
+
+organizations:
+  - mspid: FirstHospitalMSP
+    identities:
+      certificates:
+      - name: 'fh01.firsthospital.com'
+        clientPrivateKey:
+          path: 'cloud/crypto-config/peerOrganizations/firsthospital.com/users/Admin@firsthospital.com/msp/keystore/priv_sk'
+        clientSignedCert:
+          path: 'cloud/crypto-config/peerOrganizations/firsthospital.com/users/Admin@firsthospital.com/msp/signcerts/Admin@firsthospital.com-cert.pem' 
+    connectionProfile:
+      path: 'cloud/crypto-config/firsthospital.yaml'
+      discover: false
+
+  - mspid: SecondHospitalMSP
+    identities:
+      certificates:
+      - name: 'sh01.secondhospital.com'
+        clientPrivateKey:
+          path:  'cloud/crypto-config/peerOrganizations/secondhospital.com/users/Admin@secondhospital.com/msp/keystore/priv_sk' 
+        clientSignedCert:
+          path: 'cloud/crypto-config/peerOrganizations/secondhospital.com/users/Admin@secondhospital.com/msp/signcerts/Admin@secondhospital.com-cert.pem' 
+    connectionProfile:
+      path: 'cloud/crypto-config/secondhospital.yaml'

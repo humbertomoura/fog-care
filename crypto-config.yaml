@@ -1,0 +1,34 @@
+##### Defines two organizations   ####
+
+##### Orderer for fogcare network ####
+OrdererOrgs:
+  - Name: Orderer
+    Domain: firsthospital.com
+    #EnableNodeOUs: true
+    Specs:
+      - Hostname: orderer
+      
+PeerOrgs:
+  #### Peers for firsthospital fogcare
+  - Name: firsthospital
+    Domain: firsthospital.com
+    #EnableNodeOUs: true
+    Specs:
+      - Hostname: fh01
+        CommonName: fh01
+    Users:
+      Count: 1
+  #### Peers for secondhospital fogcare
+  - Name: secondhospital
+    Domain: secondhospital.com
+    #EnableNodeOUs: true
+    Specs:
+      - Hostname: sh01
+        CommonName: sh01
+    Users:
+      Count: 1
+
+
+      
+
+      

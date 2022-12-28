@@ -1,0 +1,43 @@
+organizations:
+  FirstHospital:
+    mspid: FistHospitalMSP
+    peers:
+    - fh01.firsthospital.com
+   
+
+orderers:
+  orderer.firsthospital.com:
+    url: grpcs://10.0.2.15:7050
+    grpcOptions:
+      ssl-target-name-override: orderer.firsthospital.com
+    tlsCACerts:
+      path: 'ordererOrganizations/firsthospital.com/orderers/orderer.firsthospital.com/msp/tlscacerts/tlsca.firsthospital.com-cert.pem'
+  
+peers:
+  fh01.firsthospital.com:
+    url: grpcs://10.0.2.15:7051
+    grpcOptions:
+      ssl-target-name-override: fh01.firsthospital.com
+      grpc.keepalive_time_ms: 600000
+    tlsCACerts:
+      path: 'peerOrganizations/firsthospital.com/peers/fh01/msp/tlscacerts/tlsca.firsthospital.com-cert.pem'
+
+  
+  sh01.secondhospital.com:
+    url: grpcs://10.0.2.15:8051
+    grpcOptions:
+      ssl-target-name-override: sh02.secondhospital.com
+      grpc.keepalive_time_ms: 600000
+    tlsCACerts:
+      path: 'peerOrganizations/secondhospital.com/peers/sh01/msp/tlscacerts/tlsca.secondhospital.com-cert.pem'
+ 
+channels:
+    fogcarechannel:
+        orderers:
+        - orderer.firsthospital.com
+
+        peers:
+            fh01.firsthospital.com:
+                eventSource: true
+            sh01.secondhospital.com:
+                eventSource: true
